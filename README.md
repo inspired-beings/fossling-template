@@ -23,3 +23,6 @@ A general-purpose GitHub repository template that's ready for Inspired Beings FL
 - **Renovate**
   - A customized [Renovate](https://github.com/renovatebot/renovate) configuration file
     for automated dependency management.
+- **Content Skeletons**
+  - `README.app.md` and `fastlane/metadata/android/en-US/` store-listing skeletons
+    following the Fossling content style (hook line, benefit sections, CTA footer).
