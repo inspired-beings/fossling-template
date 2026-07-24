@@ -2,6 +2,8 @@
 
 <!-- Bootstrapping a new app: replace the repo's README.md with this file, fill every <placeholder>, delete this comment. Keep this text in sync with fastlane/metadata/android/en-US/full_description.txt — that file is the master. -->
 
+<img src="assets/icon.svg" alt="Fossling <Function> icon" width="120">
+
 **<Hook line — ≤ 8 words, benefit-framed, privacy-tinged.>** Fossling <Function> <what it does — one paragraph, primary audience named>.
 
 **<EMOJI> <ALL-CAPS BENEFIT PHRASE>**
