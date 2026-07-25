@@ -20,7 +20,7 @@
 
 **🔒 PRIVATE BY DESIGN**
 
-No network access, no ads, no analytics. <App-specific privacy sentence.>
+No ads, no tracking, no analytics — ever. <Network truth for this app: either "No network access." or full transparency — what travels, where it goes, and the self-hostable/self-manageable option.>
 
 **🌍 IN YOUR LANGUAGE**
 
