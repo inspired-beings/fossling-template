@@ -1,6 +1,7 @@
-# FLOSS Application GitHub Template
+# Fossling Application GitHub Template
 
-A general-purpose GitHub repository template that's ready for Inspired Beings FLOSS (Free, Libre, and Open-Source Software) applications.
+A general-purpose GitHub repository template for [Fossling](https://github.com/inspired-beings) applications —
+the Inspired Beings collection of free/libre, adless mobile apps.
 
 ## Features
 
@@ -10,7 +11,7 @@ A general-purpose GitHub repository template that's ready for Inspired Beings FL
 - **Community Standards**
   - Includes all the [recommended Community Standards files](https://opensource.guide) for open-source projects.
 - **Trademark Policy**
-  - A forks-must-rename policy protecting application names and the "FLOSS" collection branding,
+  - A forks-must-rename policy protecting application names and the "Fossling" collection branding,
     since the AGPL covers copyright, not naming.
 - **GitHub Actions Workflow**
   - A self-deleting workflow amending the default "Initial commit" message
@@ -24,5 +25,31 @@ A general-purpose GitHub repository template that's ready for Inspired Beings FL
   - A customized [Renovate](https://github.com/renovatebot/renovate) configuration file
     for automated dependency management.
 - **Content Skeletons**
-  - `README.app.md` and `fastlane/metadata/android/en-US/` store-listing skeletons
+  - `README.app.md` and `fastlane/metadata/android/{en-US,fr-FR}/` store-listing skeletons
     following the Fossling content style (hook line, benefit sections, CTA footer).
+- **Flutter Baseline**
+  - `mise.toml` (pinned Flutter/Java/Android SDK), `l10n.yaml`, `analysis_options.yaml`,
+    and a full Flutter `.gitignore` (keystores and generated localizations included).
+- **Pillar Gates (CI)**
+  - Accessibility, sustainable design, and security enforced by workflows: `tool/check_release_apk.sh`
+    (size budget, forbidden merged-manifest permissions, minSdk anchor — run on the built release APK)
+    and `tool/check_security_alerts.sh` (open code-scanning/secret-scanning/Dependabot alerts
+    block `v*` releases), plus an advanced-setup CodeQL workflow.
+
+## Bootstrapping a new app
+
+The template ships governance, CI, and content skeletons — not a Flutter project. After generating a repo from it:
+
+1. Run `flutter create` with `--org com.fossling`, keeping this repo's files where they conflict.
+2. Replace `README.md` with `README.app.md`; fill every `<placeholder>` there and in
+   `fastlane/metadata/android/{en-US,fr-FR}/`.
+3. Author the app icon and feature graphic (`assets/icon.svg`, `assets/feature-graphic.svg`) on the shared
+   collection background, plus the adaptive/themed Android launcher icons.
+4. Baseline `MAX_MIB` in `tool/check_release_apk.sh` from the first release build (+ ~15% headroom) and
+   adjust the forbidden-permission list to the app's privacy posture.
+5. Port the accessibility test suite pattern (`test/a11y/` screen-state × locale registry) from a shipped
+   Fossling app — [fossling-magnifier](https://github.com/inspired-beings/fossling-magnifier) is the
+   reference implementation.
+6. Set the release-signing repository secrets (`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`,
+   `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`) — the `v*` release workflow builds unsigned without them —
+   and `SECURITY_ALERTS_TOKEN` for full security-gate coverage.
