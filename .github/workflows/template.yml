@@ -5,8 +5,12 @@
 
 name: Template
 
+# Push, not create: the create event does not fire reliably when a repo is generated
+# from a template (observed 2026-07-25 on fossling-piano). No loop risk — the amended
+# force-push no longer contains this file.
 on:
-  create:
+  push:
+    branches: [main]
 
 env:
   FIRST_EVER_COMMIT_MESSAGE: "feat: initialize project"
@@ -14,7 +18,7 @@ env:
 jobs:
   initialize_template:
     name: Template Initialization
-    if: ${{ !github.event.repository.is_template }}
+    if: ${{ !github.event.repository.is_template && github.event.head_commit.message == 'Initial commit' }}
     permissions:
       contents: write
     runs-on: ubuntu-latest
