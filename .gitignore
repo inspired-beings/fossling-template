@@ -46,3 +46,7 @@ app.*.map.json
 
 # Generated localization code
 lib/l10n/generated/
+
+# Agent instruction files can be hidden by contributors' global gitignores — keep them tracked
+!/AGENTS.md
+!/CLAUDE.md
