@@ -13,6 +13,10 @@ the Inspired Beings collection of free/libre, adless mobile apps.
 - **Trademark Policy**
   - A forks-must-rename policy protecting application names and the "Fossling" collection branding,
     since the AGPL covers copyright, not naming.
+- **NOTICE**
+  - A skeleton declaring what is not under the AGPL: the visual identity (icon, feature graphic and
+    the launcher/store artwork derived from them) under CC BY-SA 4.0 with trademark rights withheld,
+    plus a section for third-party assets the app bundles.
 - **GitHub Actions Workflow**
   - A self-deleting workflow amending the default "Initial commit" message
     with a [Conventional Commit](https://www.conventionalcommits.org) one: `feat: initialize project`.
@@ -47,11 +51,13 @@ The template ships governance, CI, and content skeletons — not a Flutter proje
    `<placeholder>`s.
 4. Author the app icon and feature graphic (`assets/icon.svg`, `assets/feature-graphic.svg`) on the shared
    collection background, plus the adaptive/themed Android launcher icons.
-5. Baseline `MAX_MIB` in `tool/check_release_apk.sh` from the first release build (+ ~15% headroom) and
+5. Fill `NOTICE`: name, year, and one stanza per bundled third-party asset (author, license, source,
+   modifications) — or delete that section. Keep the visual-identity section verbatim.
+6. Baseline `MAX_MIB` in `tool/check_release_apk.sh` from the first release build (+ ~15% headroom) and
    adjust the forbidden-permission list to the app's privacy posture.
-6. Port the accessibility test suite pattern (`test/a11y/` screen-state × locale registry) from a shipped
+7. Port the accessibility test suite pattern (`test/a11y/` screen-state × locale registry) from a shipped
    Fossling app — [fossling-magnifier](https://github.com/inspired-beings/fossling-magnifier) is the
    reference implementation.
-7. Set the release-signing repository secrets (`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`,
+8. Set the release-signing repository secrets (`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`,
    `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`) — the `v*` release workflow builds unsigned without them —
    and `SECURITY_ALERTS_TOKEN` for full security-gate coverage.
