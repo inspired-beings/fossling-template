@@ -10,8 +10,9 @@ set -euo pipefail
 readonly APK="${1:-build/app/outputs/flutter-apk/app-release.apk}"
 
 # Set from this app's measured baseline (universal release APK) + ~15% headroom at the
-# first release, then only lower it.
-readonly MAX_MIB=53
+# first release, then only lower it. The template ships no number on purpose — an
+# inherited budget is a silent pass, not a baseline.
+readonly MAX_MIB=SET_ME
 # Old-device reach: a higher floor drops users off the app.
 readonly MAX_MIN_SDK=26
 # No networking, no background work, no boot hooks. Remove a network entry ONLY when
@@ -35,6 +36,11 @@ fail() {
   echo "::error::$1"
   failed=1
 }
+
+if [[ ! "$MAX_MIB" =~ ^[0-9]+$ ]]; then
+  fail "MAX_MIB is not baselined for this app — set it in tool/check_release_apk.sh from the first release build + ~15% headroom"
+  exit 1
+fi
 
 if [[ ! -f "$APK" ]]; then
   fail "no APK at $APK — build it before running this check"
