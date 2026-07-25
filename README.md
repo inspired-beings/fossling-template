@@ -43,13 +43,15 @@ The template ships governance, CI, and content skeletons — not a Flutter proje
 1. Run `flutter create` with `--org com.fossling`, keeping this repo's files where they conflict.
 2. Replace `README.md` with `README.app.md`; fill every `<placeholder>` there and in
    `fastlane/metadata/android/{en-US,fr-FR}/`.
-3. Author the app icon and feature graphic (`assets/icon.svg`, `assets/feature-graphic.svg`) on the shared
+3. Rename `AGENTS.app.md` to `AGENTS.md` (agent instructions), symlink `CLAUDE.md` to it, and fill its
+   `<placeholder>`s.
+4. Author the app icon and feature graphic (`assets/icon.svg`, `assets/feature-graphic.svg`) on the shared
    collection background, plus the adaptive/themed Android launcher icons.
-4. Baseline `MAX_MIB` in `tool/check_release_apk.sh` from the first release build (+ ~15% headroom) and
+5. Baseline `MAX_MIB` in `tool/check_release_apk.sh` from the first release build (+ ~15% headroom) and
    adjust the forbidden-permission list to the app's privacy posture.
-5. Port the accessibility test suite pattern (`test/a11y/` screen-state × locale registry) from a shipped
+6. Port the accessibility test suite pattern (`test/a11y/` screen-state × locale registry) from a shipped
    Fossling app — [fossling-magnifier](https://github.com/inspired-beings/fossling-magnifier) is the
    reference implementation.
-6. Set the release-signing repository secrets (`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`,
+7. Set the release-signing repository secrets (`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`,
    `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`) — the `v*` release workflow builds unsigned without them —
    and `SECURITY_ALERTS_TOKEN` for full security-gate coverage.
